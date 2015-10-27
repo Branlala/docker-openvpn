@@ -3,7 +3,7 @@
 # Leaner build then Ubuntu
 FROM hypriot/rpi-alpine-scratch
 
-MAINTAINER Kyle Manna <kyle@kylemanna.com>
+MAINTAINER MrRaph_ "mrraph_@techan.fr"
 
 RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
     apk add --update openvpn iptables bash easy-rsa && \
