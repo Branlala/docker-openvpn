@@ -24,34 +24,34 @@ a corresponding [Digital Ocean Community Tutorial](http://bit.ly/1AGUZkq).
 
 * Initialize the `$OVPN_DATA` container that will hold the configuration files and certificates
 
-        docker run --volumes-from $OVPN_DATA --rm mrraph/docker-openvpn ovpn_genconfig -u udp://VPN.SERVERNAME.COM
-        docker run --volumes-from $OVPN_DATA --rm -it mrraph/docker-openvpn ovpn_initpki
+        docker run --volumes-from $OVPN_DATA --rm mrraph/armhf-docker-openvpn ovpn_genconfig -u udp://VPN.SERVERNAME.COM
+        docker run --volumes-from $OVPN_DATA --rm -it mrraph/armhf-docker-openvpn ovpn_initpki
 
 * Start OpenVPN server process
 
     - On Docker [version 1.2](http://blog.docker.com/2014/08/announcing-docker-1-2-0/) and newer
 
-            docker run --volumes-from $OVPN_DATA -d -p 1194:1194/udp --cap-add=NET_ADMIN mrraph/docker-openvpn
+            docker run --volumes-from $OVPN_DATA -d -p 1194:1194/udp --cap-add=NET_ADMIN mrraph/armhf-docker-openvpn
 
     - On Docker older than version 1.2
 
-            docker run --volumes-from $OVPN_DATA -d -p 1194:1194/udp --privileged mrraph/docker-openvpn
+            docker run --volumes-from $OVPN_DATA -d -p 1194:1194/udp --privileged mrraph/armhf-docker-openvpn
 
 * Generate a client certificate without a passphrase
 
-        docker run --volumes-from $OVPN_DATA --rm -it mrraph/docker-openvpn easyrsa build-client-full CLIENTNAME nopass
+        docker run --volumes-from $OVPN_DATA --rm -it mrraph/armhf-docker-openvpn easyrsa build-client-full CLIENTNAME nopass
 
 * Retrieve the client configuration with embedded certificates
 
-        docker run --volumes-from $OVPN_DATA --rm mrraph/docker-openvpn ovpn_getclient CLIENTNAME > CLIENTNAME.ovpn
+        docker run --volumes-from $OVPN_DATA --rm mrraph/armhf-docker-openvpn ovpn_getclient CLIENTNAME > CLIENTNAME.ovpn
 
 * Create an environment variable with the name DEBUG and value of 1 to enable debug output (using "docker -e").
 
-        docker run --volumes-from $OVPN_DATA -d -p 1194:1194/udp --privileged -e DEBUG=1 mrraph/docker-openvpn
+        docker run --volumes-from $OVPN_DATA -d -p 1194:1194/udp --privileged -e DEBUG=1 mrraph/armhf-docker-openvpn
 
 ## How Does It Work?
 
-Initialize the volume container using the `mrraph/docker-openvpn` image with the
+Initialize the volume container using the `mrraph/armhf-docker-openvpn` image with the
 included scripts to automatically generate:
 
 - Diffie-Hellman parameters
